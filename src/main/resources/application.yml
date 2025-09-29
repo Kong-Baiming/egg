@@ -1,4 +1,4 @@
-# 数据集配置
+# 数据集存放路径
 dataset:
   upload:
     path: D:\Files\egg\dataset\

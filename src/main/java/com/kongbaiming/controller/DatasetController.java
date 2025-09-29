@@ -16,7 +16,7 @@ public class DatasetController {
     @Autowired
     private DatasetService datasetService;
 
-    @PostMapping("upload")
+    @PostMapping("/upload")
     public Result uploadDataset(@RequestParam("datasetName") String datasetName,
                                 @RequestParam("file")MultipartFile file) {
         log.info("上传了数据集: {}", datasetName);
