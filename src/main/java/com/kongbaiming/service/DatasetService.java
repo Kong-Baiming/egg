@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -34,5 +36,27 @@ public class DatasetService {
                 e.printStackTrace(); // 实际应用中建议使用日志框架记录异常
             }
         }
+    }
+
+    /**
+     * 获取数据集列表
+     * @return
+     */
+    public List<String> list() {
+        List<String> datasetNames = new ArrayList<>();
+
+        String path = datasetProperties.getPath();
+        File dir = new File(path);
+
+        File[] files = dir.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    datasetNames.add(file.getName());
+                }
+            }
+        }
+
+        return datasetNames;
     }
 }
