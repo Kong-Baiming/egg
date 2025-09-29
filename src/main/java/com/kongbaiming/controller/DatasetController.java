@@ -45,4 +45,16 @@ public class DatasetController {
         List<String> list = datasetService.list();
         return Result.success(list);
     }
+
+    /**
+     * 删除数据集
+     * @param datasetName
+     * @return
+     */
+    @DeleteMapping("/delete/{datasetName}")
+    public Result deleteDataset(@PathVariable String datasetName) {
+        log.info("删除了数据集: {}", datasetName);
+        datasetService.delete(datasetName);
+        return Result.success(datasetName + " deleted successfully");
+    }
 }

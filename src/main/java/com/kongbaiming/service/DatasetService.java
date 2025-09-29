@@ -59,4 +59,30 @@ public class DatasetService {
 
         return datasetNames;
     }
+
+    /**
+     * 删除数据集
+     * @param datasetName
+     */
+    public void delete(String datasetName) {
+        try {
+            String filePath = datasetProperties.getPath() + datasetName;
+            File file = new File(filePath);
+            if (file.exists()) {
+                boolean deleted = file.delete();
+                if (deleted) {
+                    log.info("数据集删除成功: {}", filePath);
+                } else {
+                    log.warn("数据集删除失败: {}", filePath);
+
+                }
+            } else {
+                log.warn("数据集文件不存在: {}", filePath);
+            }
+        } catch (Exception e) {
+            log.error("删除数据集时发生异常: {}", datasetName, e);
+            e.printStackTrace();
+        }
+    }
+
 }
